@@ -1,142 +1,127 @@
-Netflix Content Analytics
+# 🎬 Netflix Business Analysis
 
-This project analyzes Netflix content using Python, MySQL, and Power BI to identify trends in movie and TV show distribution, content ratings, genres, and production countries.
+End-to-end Netflix content analysis using **Python, MySQL, and Power BI** to explore movie vs TV show distribution, genre trends, ratings, and top producing countries.
 
-🔧 Tools Used
-Tool	Purpose
-Python	Data cleaning and preprocessing
-MySQL	Data analysis queries
-Power BI	Dashboard visualization
-📂 Dataset
+---
 
-The dataset contains 8800+ Netflix titles including:
+## 🔍 Overview
 
-Title
+Netflix has over 8,800+ titles across movies and TV shows. This project analyzes content trends to understand how Netflix has grown its library, which genres dominate, and which countries produce the most content.
 
-Type (Movie / TV Show)
+---
 
-Director
+## 🎯 Objectives
 
-Country
+- Analyze the distribution of Movies vs TV Shows
+- Identify top content-producing countries
+- Explore genre and rating trends
+- Understand Netflix content growth over the years
+- Build an interactive Power BI dashboard for business insights
 
-Release Year
+---
 
-Rating
+## 🛠 Tools & Technologies
 
-Duration
+| Tool | Purpose |
+|---|---|
+| Python (Pandas) | Data cleaning and preprocessing |
+| MySQL | Data analysis and querying |
+| Power BI | Interactive dashboard and visualization |
 
-Genres
+---
 
-🧹 Data Cleaning (Python)
+## 📂 Dataset
+
+The dataset contains **8,800+ Netflix titles** including:
+- Title, Type (Movie / TV Show)
+- Director, Country, Release Year
+- Rating, Duration, Genres
+
+---
+
+## 🧹 Data Cleaning (Python)
 
 Python was used to:
+- Handle missing values in country, director, and rating columns
+- Convert date columns to proper datetime format
+- Extract numeric duration values from string format
+- Prepare cleaned dataset for SQL analysis
 
-Handle missing values
+---
 
-Convert date columns
+## 🗄 SQL Analysis
 
-Extract numeric durations
+Key queries performed:
+- Content distribution by type (Movie vs TV Show)
+- Top 10 countries by number of titles
+- Genre frequency analysis using JSON_TABLE for multi-value columns
+- Year-over-year content growth trends
+- Rating distribution analysis
 
-Prepare the dataset for SQL analysis
+---
 
-Example:
+## 📊 Power BI Dashboard
 
-import pandas as pd
+The interactive dashboard includes:
+- Total Movies and Total TV Shows (KPI cards)
+- Average Movie Duration and Average TV Seasons
+- Genre Distribution (bar chart)
+- Rating Distribution (pie chart)
+- Country Distribution (map visual)
+- Release Year Trend (line chart)
 
-df = pd.read_csv("netflix_titles.csv")
+### Dashboard Preview
 
-df = df.dropna(subset=['type','country','release_year'])
+https://github.com/hemnath126-collab/Netflix-Business-Analysis/blob/main/Dashbord%20Screenshot.png
+---
 
-df['date_added'] = pd.to_datetime(df['date_added'], errors='coerce')
+## 📈 Key Insights
 
-df['duration_numeric'] = df['duration'].str.extract('(\d+)')
-🗄 SQL Analysis
+- **Movies make up ~70%** of Netflix content vs 30% TV Shows
+- **United States** is the top content-producing country
+- **Drama and International Movies** dominate genre distribution
+- **TV-MA** is the most common content rating
+- Netflix content production **increased sharply after 2016**, reflecting major investment in originals
 
-Example query used to analyze content distribution:
+---
 
-SELECT type,
-COUNT(*) AS total_titles
-FROM netflix_data_analysis
-GROUP BY type;
+## 💡 Business Recommendations
 
-Example query for country analysis:
+- Expand international content production — non-US content is growing in demand
+- Invest further in Drama and Thriller genres based on audience popularity
+- Continue TV-MA content strategy as it dominates viewer preferences
+- Target underrepresented regions (Africa, Southeast Asia) for new original content
 
-SELECT TRIM(country_name) AS country,
-COUNT(*) AS total_titles
-FROM netflix_data_analysis ,
-JSON_TABLE(
-CONCAT('["', REPLACE(country, ',', '","'), '"]'),
-'$[*]' COLUMNS(country_name VARCHAR(100) PATH '$')
-) jt
-GROUP BY TRIM(country_name);
-📊 Power BI Dashboard
+---
 
-The Power BI dashboard provides insights into Netflix content using interactive visualizations.
+## 🚀 Future Improvements
 
-Dashboard includes:
+- Add predictive analytics for content performance
+- Perform viewer engagement analysis
+- Build a machine learning content recommendation model
 
-Total Movies
+---
 
-Total TV Shows
+## 📁 Files Included
 
-Average Movie Duration
+| File | Description |
+|---|---|
+| `Netflix_Business_Analysis.ipynb` | Python data cleaning and EDA notebook |
+| `Netflix_Data_Analysis.sql` | SQL queries for content analysis |
+| `Netflix_Business_Analysis.ipynb.pbix` | Power BI dashboard |
+| `Netflix-Business-Analysis.pdf` | Project report (PDF) |
+| `netflix.csv` | Dataset |
 
-Average TV Seasons
+---
 
-Genre Distribution
+## ⭐ Skills Demonstrated
 
-Rating Distribution
+`Data Cleaning` `SQL Analytics` `Exploratory Data Analysis` `Power BI` `Data Visualization` `Business Insight Generation`
 
-Country Distribution
+---
 
-Release Year Trends
+## 💼 Author
 
-📈 Key Insights
-
-• Movies represent ~70% of Netflix content
-
-• United States produces the most Netflix titles
-
-• Drama and International Movies dominate genre distribution
-
-• TV-MA is the most common rating
-
-• Netflix content production increased rapidly after 2016
-
-📷 Dashboard Preview
-
-(Insert your dashboard screenshot here)
-
-📊 Business Recommendations
-
-• Expand international content production
-
-• Invest in popular genres like Drama
-
-• Continue producing TV-MA rated content
-
-🚀 Future Improvements
-
-Add predictive analytics
-
-Perform viewer engagement analysis
-
-Build machine learning recommendation models
-
-⭐ Skills Demonstrated
-
-Data Cleaning
-
-SQL Analytics
-
-Data Visualization
-
-Dashboard Design
-
-Business Insight Generation
-
-💼 Author
-
-Hemnath S
-
-Data Analyst | Python | SQL | Power BI
+**Hemnath S**  
+Data Analyst | Python | SQL | Power BI  
+📧 hemnath126@gmail.com | 🔗 [GitHub](https://github.com/hemnath126-collab)
